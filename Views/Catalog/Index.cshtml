@@ -1,0 +1,37 @@
+<!--ista de Assets-->
+@model Library.Models.Catalog.AssetIndexModel
+
+
+<div id="assets"></div>
+<h3>Catálogo de Bibliotecas</h3>
+<div id="assetsTable">
+    <table class="table table-condensed" id="catalogIndexTable">
+        <thead>
+            <tr>
+                <!--Colunas-->
+                <th>Imagem</th>
+                <th>Titulo</th>
+                <th>Autor / Diretor</th>
+                <th>DCC</th>
+            </tr>
+        </thead>
+        <tbody>
+            <!--Sintaxe do Razor-->
+            @foreach (var asset in Model.Assets)
+            {
+                <tr class="assetRow">
+                    <!--Chamada à ação-->
+                    <a asp-controller="Catalog" asp-action="Detail" asp-route-id="@asset.Id">
+                        <td class="">
+                            <img src="@asset.ImageUrl" class="ImageCall" />
+                        </td>
+                    </a>
+
+                    <td class="">@asset.Title</td>
+                    <td class="">@asset.AuthorOrDirector</td>
+                    <td class="">@asset.DeweyCallNumber</td>
+                </tr>
+            }
+        </tbody>
+    </table>
+</div>
